@@ -46,3 +46,6 @@ bin
 # if a configuration is compelling we will force add the update back to the repo
 container-support/compose/docker-compose.override
 container-support/compose/docker-compose.override.yml
+
+# test files
+*.http
