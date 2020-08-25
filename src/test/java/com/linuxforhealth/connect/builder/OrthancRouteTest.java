@@ -18,7 +18,7 @@ import java.util.Properties;
 import java.util.UUID;
 
 /**
- * Tests {@link FhirR4RestRouteBuilder}
+ * Tests {@link FhirR4RouteBuilder}
  */
 public class OrthancRouteTest extends RouteTestSupport {
 
@@ -78,7 +78,7 @@ public class OrthancRouteTest extends RouteTestSupport {
 
         mockResult.expectedMessageCount(1);
         mockResult.expectedBodiesReceived(expectedMessage);
-        mockResult.expectedPropertyReceived("dataStoreUri", "kafka:DICOM_IMAGE?brokers=localhost:9092");
+        mockResult.expectedPropertyReceived("dataStoreUri", "kafka:DICOM_IMAGE?brokers=localhost:9094");
         mockResult.expectedPropertyReceived("dataFormat", "DICOM");
         mockResult.expectedPropertyReceived("messageType", "IMAGE");
         mockResult.expectedPropertyReceived("routeId", "orthanc-post");

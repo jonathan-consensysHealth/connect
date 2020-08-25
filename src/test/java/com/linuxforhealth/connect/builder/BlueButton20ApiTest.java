@@ -20,7 +20,7 @@ import java.util.Properties;
 import java.util.UUID;
 
 /**
- * Tests {@link BlueButton20RestRouteBuilder#API_ROUTE_ID}
+ * Tests {@link BlueButton20RouteBuilder#API_ROUTE_ID}
  */
 public class BlueButton20ApiTest extends RouteTestSupport {
 
@@ -28,27 +28,27 @@ public class BlueButton20ApiTest extends RouteTestSupport {
 
     @Override
     protected RoutesBuilder createRouteBuilder()  {
-        return new BlueButton20RestRouteBuilder();
+        return new BlueButton20RouteBuilder();
     }
 
     @Override
     protected Properties useOverridePropertiesWithPropertiesComponent() {
         Properties props = super.useOverridePropertiesWithPropertiesComponent();
-        props.setProperty("lfh.connect.bluebutton_20.cms.clientId", "client-id");
-        props.setProperty("lfh.connect.bluebutton_20.cms.clientSecret", "client-secret");
+        props.setProperty("lfh.connect.bluebutton_20.cms.clientid", "client-id");
+        props.setProperty("lfh.connect.bluebutton_20.cms.clientsecret", "client-secret");
         return props;
     }
 
     @BeforeEach
     @Override
     protected void configureContext() throws Exception {
-        setProducerResponse(BlueButton20RestRouteBuilder.API_ROUTE_ID,
-                BlueButton20RestRouteBuilder.API_ROUTE_BLUE_BUTTON_REQUEST_PRODUCER_ID,
+        setProducerResponse(BlueButton20RouteBuilder.API_ROUTE_ID,
+                BlueButton20RouteBuilder.API_ROUTE_BLUE_BUTTON_REQUEST_PRODUCER_ID,
                 "bluebutton-20",
                 "patient-result.json");
 
-        mockProducerEndpointById(BlueButton20RestRouteBuilder.API_ROUTE_ID,
-                BlueButton20RestRouteBuilder.API_ROUTE_PRODUCER_ID,
+        mockProducerEndpointById(BlueButton20RouteBuilder.API_ROUTE_ID,
+                BlueButton20RouteBuilder.API_ROUTE_PRODUCER_ID,
                 "mock:result");
 
         super.configureContext();
@@ -68,13 +68,13 @@ public class BlueButton20ApiTest extends RouteTestSupport {
 
         mockResult.expectedMessageCount(1);
         mockResult.expectedBodiesReceived(expectedMessage);
-        mockResult.expectedPropertyReceived("dataStoreUri", "kafka:FHIR-R4_PATIENT?brokers=localhost:9092");
+        mockResult.expectedPropertyReceived("dataStoreUri", "kafka:FHIR-R4_PATIENT?brokers=localhost:9094");
         mockResult.expectedPropertyReceived("dataFormat", "FHIR-R4");
         mockResult.expectedPropertyReceived("messageType", "PATIENT");
-        mockResult.expectedPropertyReceived("routeId", "bluebutton-20-rest");
+        mockResult.expectedPropertyReceived("routeId", "bluebutton-20");
 
 
-        fluentTemplate.to("{{lfh.connect.bluebutton_20.rest.uri}}/Patient?-19990000002154")
+        fluentTemplate.to("{{lfh.connect.bluebutton-20.uri}}/Patient?-19990000002154")
                 .withHeader("Authorization", "387Rf1c2JTuduYuOQIuRHUlVOvJsib")
                 .request();
 

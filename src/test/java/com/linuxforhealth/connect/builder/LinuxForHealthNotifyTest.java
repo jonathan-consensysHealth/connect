@@ -34,8 +34,8 @@ public class LinuxForHealthNotifyTest extends RouteTestSupport {
         Properties props = super.useOverridePropertiesWithPropertiesComponent();
 
         props.setProperty("lfh.connect.test.uri", "direct:test-notify");
-        props.setProperty("lfh.connect.test.dataFormat", "csv");
-        props.setProperty("lfh.connect.test.messageType", "person");
+        props.setProperty("lfh.connect.test.dataformat", "csv");
+        props.setProperty("lfh.connect.test.messagetype", "person");
 
         props.setProperty("lfh.connect.messaging.uri", "mock:messaging");
         return props;
@@ -61,7 +61,7 @@ public class LinuxForHealthNotifyTest extends RouteTestSupport {
                             exchange.setProperty("routeUri", "http://0.0.0.0:8080/fhir/r4/PATIENT");
                             exchange.setProperty("dataFormat", "fhir-r4");
                             exchange.setProperty("timestamp", 1596830090);
-                            exchange.setProperty("dataStoreUri", "kafka:FHIR_R4_PATIENT?brokers=localhost:9092");
+                            exchange.setProperty("dataStoreUri", "kafka:FHIR_R4_PATIENT?brokers=localhost:9094");
                             exchange.setProperty("status", "success");
 
                             RecordMetadata rm =  new RecordMetadata(
